@@ -58,19 +58,19 @@ export default function ZoneParkLanding() {
     { name: "Gestión de Categorías", image: "/interfaz (6).png" },
     {
       name: "Gestión de Usuarios",
-      image: "/Interfaz (5).png",
+      image: "/interfaz (5).png",
     },
     {
       name: "Reportes Detallados",
-      image: "/Interfaz (4).png",
+      image: "/interfaz (4).png",
     },
     {
       name: "Ajustes y Configuración",
-      image: "/Interfaz (3).png",
+      image: "/interfaz (3).png",
     },
     {
       name: "Inicio de Sesión",
-      image: "/Interfaz (2).png",
+      image: "/interfaz (2).png",
     },
   ];
 
