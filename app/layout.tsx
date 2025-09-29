@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -10,6 +9,12 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["200","400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body suppressHydrationWarning className={poppins.className}>
         {children}
         <Analytics />
       </body>

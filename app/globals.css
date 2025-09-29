@@ -7,13 +7,13 @@
   /* Updated color tokens to match ZonePark brand colors */
   --background: oklch(1 0 0); /* White background */
   --foreground: oklch(0.15 0.05 264); /* Dark navy #1b1d3b */
-  --card: oklch(0.97 0.01 240); /* Light gray #f1f5f9 */
-  --card-foreground: oklch(0.25 0.15 264); /* Primary blue #252c99 */
+  --card: #fff; /* Light gray #f1f5f9 */
+  --card-foreground: #252c99; /* Primary blue #252c99 */
   --popover: oklch(0.98 0 0 / 0.9); /* Semi-transparent white */
   --popover-foreground: oklch(0.15 0.05 264); /* Dark navy */
-  --primary: oklch(0.25 0.15 264); /* Primary blue #252c99 */
+  --primary: #252c99; /* Primary blue #252c99 */
   --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.15 0.05 264); /* Secondary navy #1b1d3b */
+  --secondary: #eff0fc; /* Secondary navy #1b1d3b */
   --secondary-foreground: oklch(1 0 0); /* White text on secondary */
   --muted: oklch(0.97 0.01 240); /* Light gray */
   --muted-foreground: oklch(0.15 0.05 264); /* Dark navy for contrast */
@@ -24,15 +24,15 @@
   --border: oklch(0.85 0.01 240); /* Light border */
   --input: oklch(0.97 0.01 240); /* Input background */
   --ring: oklch(0.25 0.15 264 / 0.2); /* Focus ring */
-  --chart-1: oklch(0.25 0.15 264); /* Primary blue */
+  --chart-1: #252c99; /* Primary blue */
   --chart-2: oklch(0.55 0.15 264); /* Accent blue */
   --chart-3: oklch(0.15 0.05 264); /* Dark navy */
-  --chart-4: oklch(0.55 0.25 25); /* Error red */
+  --chart-4: #eff0fc; /* Error red */
   --chart-5: oklch(0.65 0.25 35); /* Orange */
   --radius: 0.5rem; /* Slightly smaller radius for corporate look */
   --sidebar: oklch(0.97 0.01 240);
   --sidebar-foreground: oklch(0.15 0.05 264);
-  --sidebar-primary: oklch(0.25 0.15 264);
+  --sidebar-primary: #252c99;
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.55 0.15 264);
   --sidebar-accent-foreground: oklch(1 0 0);
@@ -123,4 +123,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes slide-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100vh;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out forwards;
 }
