@@ -125,8 +125,6 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
 
         const segmentTop = "358.5px";
 
-        console.log({ segmentHeight, segmentTop, index, isPainted });
-
         return (
           <div
             key={`mobile-segment-${index}`}
