@@ -94,7 +94,7 @@ const timelineEvents = [
     number: "07",
     description:
       "Al finalizar el turno, selecciona un rango de horas y obtén un resumen de ingresos totales e individuales, llevando las cuentas de forma simple y precisa.",
-    video: "/videos/CierreDeCaja.webm",
+    video: "/videos/CierredeCaja.webm",
   },
   {
     id: "8",
