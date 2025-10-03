@@ -1,50 +1,58 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 
 interface VideoProps {
   src: string;
   className?: string;
 }
 
-export function SmartVideo({ src, className }: VideoProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+export const SmartVideo = forwardRef<HTMLVideoElement, VideoProps>(
+  ({ src, className }, ref) => {
+    const internalRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    const videoEl = videoRef.current;
-    if (!videoEl) return;
+    useEffect(() => {
+      const videoEl = internalRef.current;
+      if (!videoEl) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Entra en pantalla → reinicia y reproduce
-            videoEl.currentTime = 0;
-            videoEl.play().catch(() => {});
-          } else {
-            // Sale de pantalla → pausa
-            videoEl.pause();
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              videoEl.currentTime = 0;
+              videoEl.play().catch(() => {});
+            } else {
+              videoEl.pause();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      observer.observe(videoEl);
+
+      return () => observer.disconnect();
+    }, []);
+
+    return (
+      <video
+        ref={(el) => {
+          internalRef.current = el;
+          if (typeof ref === "function") {
+            ref(el);
+          } else if (ref) {
+            (ref as React.MutableRefObject<HTMLVideoElement | null>).current =
+              el;
           }
-        });
-      },
-      { threshold: 0.5 } // 50% visible = se considera en pantalla
+        }}
+        src={src}
+        loop
+        muted
+        playsInline
+        className={className}
+      />
     );
+  }
+);
 
-    observer.observe(videoEl);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      loop
-      muted
-      playsInline
-      className={className}
-    />
-  );
-}
+SmartVideo.displayName = "SmartVideo";

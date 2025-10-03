@@ -17,19 +17,8 @@ interface VerticalTimelineProps {
   events: TimelineEvent[];
 }
 
-function polyHeight(index: number): number {
-  return (
-    -0.134920635 * index ** 7 +
-    3.36111111 * index ** 6 -
-    32.9861111 * index ** 5 +
-    160.486111 * index ** 4 -
-    396.819444 * index ** 3 +
-    448.652778 * index ** 2 +
-    412.440476 * index
-  );
-}
-
 export function VerticalTimeline({ events }: VerticalTimelineProps) {
+  const [firstCardHeight, setFirstCardHeight] = useState<number>(0);
   const [visibleEvents, setVisibleEvents] = useState<Set<string>>(new Set());
   const [paintedSegments, setPaintedSegments] = useState<Set<number>>(
     new Set()
@@ -38,7 +27,50 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
   const timelineRef = useRef<HTMLDivElement>(null);
   const [paintedCircles, setPaintedCircles] = useState<Set<number>>(new Set());
 
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
+
+  const setCardRef = (id: string) => (el: HTMLDivElement | null) => {
+    if (el) cardRefs.current.set(id, el);
+    else cardRefs.current.delete(id);
+  };
+
+  const setVideoRef = (id: string) => (el: HTMLVideoElement | null) => {
+    if (el) videoRefs.current.set(id, el);
+    else videoRefs.current.delete(id);
+  };
+  const [segmentHeights, setSegmentHeights] = useState<number[]>([]);
+
   useEffect(() => {
+    if (cardRefs.current.size === 0 || videoRefs.current.size === 0) return;
+
+    const cardHeights = events.map(
+      (e) => cardRefs.current.get(e.id)?.offsetHeight ?? 0
+    );
+    const videoHeights = events.map(
+      (e) => videoRefs.current.get(e.id)?.offsetHeight ?? 0
+    );
+
+    const heights: number[] = [];
+
+    events.forEach((_, i) => {
+      let accumulatedCardHeight = 0;
+      for (let j = 1; j <= i; j++) accumulatedCardHeight += cardHeights[j];
+
+      const spacing = 48 * i;
+      const padding = 64 * i;
+      const videoPart = videoHeights[0] * i; // o videoHeights[i] si quieres individual
+      const total = spacing + padding + videoPart + accumulatedCardHeight;
+
+      heights[i] = i === 0 ? 0 : total;
+
+      console.log(
+        `i=${i} spacing=${spacing}, padding=${padding}, videoPart=${videoPart}, accumulatedCard=${accumulatedCardHeight} => total=${total}`
+      );
+    });
+
+    setSegmentHeights(heights);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -113,17 +145,17 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
       <div
         className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-gray-300 md:hidden block z-0"
         style={{
-          top: "358.5px",
-          height: `3231px`,
+          top: `calc(${firstCardHeight}px + 88px)`,
+          height: `${segmentHeights[events.length - 1]}px`,
         }}
       />
 
       {events.map((_, index) => {
         const isPainted = paintedSegments.has(index);
         // const segmentHeight = "4010px";
-        const segmentHeight = `${polyHeight(index)}px`;
+        // const segmentHeight = `${polyHeight(index)}px`;
 
-        const segmentTop = "358.5px";
+        // const segmentTop = "358.5px";
 
         return (
           <div
@@ -134,8 +166,8 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
               isPainted ? "bg-primary" : "bg-transparent h-0"
             )}
             style={{
-              top: segmentTop,
-              height: isPainted ? segmentHeight : "0px",
+              top: `calc(${firstCardHeight}px + 88px)`,
+              height: isPainted ? `${segmentHeights[index] || 0}px` : "0px",
             }}
           />
         );
@@ -273,6 +305,12 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
               <div className="md:hidden flex flex-col items-center max-w-sm mx-auto relative">
                 {/* Card */}
                 <Card
+                  ref={(el) => {
+                    setCardRef(event.id)(el);
+                    if (el && index === 0) {
+                      setFirstCardHeight(el.offsetHeight);
+                    }
+                  }}
                   className={cn(
                     "transition-all duration-700 transform shadow-lg rounded-xl border-0 w-full z-10",
                     isVisible
@@ -320,6 +358,7 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
                   )}
                 >
                   <SmartVideo
+                    ref={setVideoRef(event.id)}
                     src={event.video}
                     className="w-full h-full object-cover aspect-video rounded-xl"
                   />

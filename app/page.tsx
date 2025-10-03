@@ -302,7 +302,8 @@ export default function ZoneParkLanding() {
                       )
                     }
                   >
-                    Solicita un demo 🡲
+                    Solicita un demo
+                    <ArrowRight className="-ml-1" strokeWidth={4} />
                   </Button>
                 </div>
               </div>
@@ -652,7 +653,8 @@ export default function ZoneParkLanding() {
                       )
                     }
                   >
-                    Solicita un demo 🡲
+                    Solicita un demo
+                    <ArrowRight className="-ml-1" strokeWidth={4} />
                   </Button>
                 </CardContent>
               </Card>
@@ -709,7 +711,8 @@ export default function ZoneParkLanding() {
                       )
                     }
                   >
-                    Solicita un demo 🡲
+                    Solicita un demo
+                    <ArrowRight className="-ml-1" strokeWidth={4} />
                   </Button>
                 </CardContent>
               </Card>
@@ -818,7 +821,7 @@ export default function ZoneParkLanding() {
               }
             >
               Solicita un demo
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="-ml-1" strokeWidth={4} />
             </Button>
           </div>
         </section>
@@ -847,7 +850,7 @@ export default function ZoneParkLanding() {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="/logo.svg"
+                    src="/logonbdevsblanco.svg"
                     alt="Logo"
                     className="w-44 h-auto cursor-pointer"
                   />
