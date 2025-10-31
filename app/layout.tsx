@@ -7,11 +7,14 @@ export const metadata: Metadata = {
   title: "ZonePark - NBDevs",
   description: "Created with v0",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["200","400", "500", "600", "700"],
+  weight: ["200", "400", "500", "600", "700"],
   variable: "--font-poppins",
 });
 

@@ -297,7 +297,7 @@ export default function ZoneParkLanding() {
                     className="w-[80vw] md:w-auto tracking-widest bg-white text-primary hover:bg-white/90 text-base font-semibold px-8 py- hover:scale-105 transition-all duration-300"
                     onClick={() =>
                       window.open(
-                        "https://api.whatsapp.com/send/?phone=51902374133&text=Hola+quiero+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark&type=phone_number&app_absent=0",
+                        "https://api.whatsapp.com/send/?phone=51902374133&text=%F0%9F%91%8B+%C2%A1Hola!+Quisiera+obtener+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark+por+favor.&type=phone_number&app_absent=0",
                         "_blank"
                       )
                     }
@@ -648,7 +648,7 @@ export default function ZoneParkLanding() {
                     className="w-[80vw] md:w-full tracking-widest bg-primary text-white hover:bg-primary/90 text-base font-semibold px-8 py-6"
                     onClick={() =>
                       window.open(
-                        "https://api.whatsapp.com/send/?phone=51902374133&text=Hola+quiero+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark&type=phone_number&app_absent=0",
+                        "https://api.whatsapp.com/send/?phone=51902374133&text=👋+Hola,+quisiera+obtener+más+información+sobre+el+plan+mensual+de+ZonePark+y+solicitar+un+demo.+Gracias.&type=phone_number&app_absent=0",
                         "_blank"
                       )
                     }
@@ -706,7 +706,7 @@ export default function ZoneParkLanding() {
                     className="w-[80vw] md:w-full tracking-widest bg-primary text-white hover:bg-primary/90 text-base font-semibold px-8 py-6"
                     onClick={() =>
                       window.open(
-                        "https://api.whatsapp.com/send/?phone=51902374133&text=Hola+quiero+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark&type=phone_number&app_absent=0",
+                        "https://api.whatsapp.com/send/?phone=51902374133&text=👋+Hola,+quisiera+obtener+más+información+sobre+el+plan+de+pago+único+de+ZonePark+y+solicitar+un+demo.+Gracias.&type=phone_number&app_absent=0",
                         "_blank"
                       )
                     }
@@ -815,7 +815,7 @@ export default function ZoneParkLanding() {
               className="bg-primary text-white hover:bg-primary/90 text-lg px-12 py-6 hover:scale-105 transition-all duration-300"
               onClick={() =>
                 window.open(
-                  "https://api.whatsapp.com/send/?phone=51902374133&text=Hola+quiero+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark&type=phone_number&app_absent=0",
+                  "https://api.whatsapp.com/send/?phone=51902374133&text=%F0%9F%91%8B+%C2%A1Hola!+Quisiera+obtener+m%C3%A1s+informaci%C3%B3n+sobre+ZonePark+por+favor.&type=phone_number&app_absent=0",
                   "_blank"
                 )
               }
