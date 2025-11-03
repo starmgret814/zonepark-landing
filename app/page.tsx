@@ -284,7 +284,7 @@ export default function ZoneParkLanding() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedOnScroll>
-              <div className="text-white space-y-6 animate-in fade-in slide-in-from-left duration-1000 mb-0">
+              <div className="text-white space-y-6 lg:ml-26 animate-in fade-in slide-in-from-left duration-1000 mb-0">
                 <h1 className="text-3xl md:text-5xl leading-normal md:leading-tight lg:text-6xl md:font-medium font-semibold text-balance -mt-4 mb-0 text-center md:mt-6 md:text-left">
                   Control total de tu estacionamiento, sin complicaciones.
                 </h1>
@@ -311,7 +311,7 @@ export default function ZoneParkLanding() {
             {/* ANIMACION */}
 
             <AnimatedOnScroll>
-              <div className="animate-in fade-in slide-in-from-right duration-1000 md:pt-[4%] md:mt-0 -mt-8">
+              <div className="animate-in fade-in lg:ml-40 slide-in-from-right duration-1000 md:pt-[4%] md:mt-0 -mt-8">
                 <AnimatedTimeline />
               </div>
             </AnimatedOnScroll>
