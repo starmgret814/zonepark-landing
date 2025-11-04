@@ -63,10 +63,6 @@ export function VerticalTimeline({ events }: VerticalTimelineProps) {
       const total = spacing + padding + videoPart + accumulatedCardHeight;
 
       heights[i] = i === 0 ? 0 : total;
-
-      console.log(
-        `i=${i} spacing=${spacing}, padding=${padding}, videoPart=${videoPart}, accumulatedCard=${accumulatedCardHeight} => total=${total}`
-      );
     });
 
     setSegmentHeights(heights);
